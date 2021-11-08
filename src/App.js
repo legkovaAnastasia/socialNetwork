@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import './App.css'
+import Dialogues from './components/Dialogues/Dialogues';
+import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import Settings from './components/Settings/Settings';
 
-function App() {
+
+
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='app-wrapper'>
+        <Header />
+
+        <Navbar />
+
+        <div className='app-wrapper-content'>
+          
+          <Route  path='/profile'> <Profile posts={props.posts} /></Route>
+          {/* <Route  path='/dialogues'> <Dialogues messages={props.messages} dialogue={props.dialogue} /></Route> */}
+          <Route  path='/dialogues'> <Dialogues messages={props.messages} dialogue={props.dialogue} /></Route>
+
+        </div>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
+// проверить если будут ошибки по уроку 27 Router и BrowserRoute в обрамляющем теге

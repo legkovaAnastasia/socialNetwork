@@ -1,0 +1,15 @@
+.nav {
+  grid-area: n;
+  background-color: aqua;
+  padding: 20px;
+}
+
+.menu a {
+  color: grey;
+  text-decoration: none;
+  margin: 8px 0 8px 0;
+}
+
+.menu a.active {
+  color: azure;
+}
