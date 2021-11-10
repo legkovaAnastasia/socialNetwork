@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import s from './Dialogues.module.css';
 import DialogueItem from './DialoguesItem/DialogsItem';
 import Message from './Message/Message';
