@@ -2,17 +2,23 @@ import s from './Dialogues.module.css';
 import DialogueItem from './DialoguesItem/DialogsItem';
 import Message from './Message/Message';
 import React from 'react';
+import { sendMessageBodyCreator, updateNewMessageBodyCreator } from '../../redux/state';
 
 const Dialogues = (props) => {
 
-    let dialogueElements = props.state.dialogues.map(dialogue => < DialogueItem name={dialogue.name} id={dialogue.id} />);
-    let messagesElements = props.state.messages.map(messages => < Message message={messages.message} />);
+    let state = props.store.getState().dialoguesPage;
 
-    let newPostElement = React.createRef();
+    let dialogueElements = state.dialogues.map(dialogue => < DialogueItem name={dialogue.name} id={dialogue.id} />);
+    let messagesElements = state.messages.map(messages => < Message message={messages.message} />);
+    let newMessageBody = state.newMessageBody;
 
-    let addPost = () => {
-        let text = newPostElement.current.value;
-        alert(text);
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageBodyCreator());
+    }
+
+    let onNewMessageChange = (e) => {
+        let body = e.target.value;
+        props.store.dispatch(updateNewMessageBodyCreator(body));
     }
 
     return (
@@ -21,19 +27,14 @@ const Dialogues = (props) => {
                 {dialogueElements}
             </div>
             <div className={s.messages}>
-                {messagesElements}
+                <div>{messagesElements}</div>
+                <div>
+                    <div><textarea value={newMessageBody}
+                        onChange={onNewMessageChange}
+                        placeholder='Enter your message'></textarea></div>
+                    <div><button onClick={onSendMessageClick}>Add Post</button> </div>
+                </div>
             </div>
-
-
-            <div>
-                <textarea ref={newPostElement}></textarea>
-            </div>
-            <div>
-                <button onClick={addPost}>Add Post</button>
-            </div>
-            <button>Remove</button>
-
-            
         </div>
     );
 }
