@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import store from './redux/state';
 import './index.css';
 import App from './App';
-import { addPost, updateNewPostText } from './redux/state'
+// import { addPost, updateNewPostText } from './redux/state'
 
 let rerenderEntireTree = (state) => {
   ReactDOM.render(
