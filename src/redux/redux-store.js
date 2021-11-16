@@ -3,12 +3,12 @@ import dialoguesReducer from "./dialoguesReducer";
 import profileReducer from "./profileReducer";
 
 
-let redusers = combineReducers({
+let reducers = combineReducers({
     profilePage: profileReducer,
     dialoguesPage: dialoguesReducer
 });
 
-let store = createStore();
+let store = createStore(reducers);
 
 
 export default store;
