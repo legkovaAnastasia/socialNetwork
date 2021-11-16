@@ -14,7 +14,7 @@ import DialoguesContainer from './components/Dialogues/DialoguesContainer';
 
 const App = (props) => {
   return (
-    <Router>
+    // <Router>
       <div className='app-wrapper'>
         <Header />
 
@@ -22,14 +22,12 @@ const App = (props) => {
 
         <div className='app-wrapper-content'>
 
-          <Route path='/profile'> <Profile
-            store={props.store} /></Route>
-          <Route path='/dialogues'> <DialoguesContainer 
-            store={props.store}/></Route>
+          <Route path='/profile'> <Profile /></Route>
+          <Route path='/dialogues'> <DialoguesContainer /></Route>
 
         </div>
       </div>
-    </Router>
+    // </Router>
   );
 }
 
