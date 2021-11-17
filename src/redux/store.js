@@ -4,7 +4,7 @@ import profileReducer from "./profileReducer";
 import dialoguesReducer from "./dialoguesReducer";
 
 
-let store = {
+export let store = {
     _state: {
         profilePage: {
             posts: [
@@ -54,5 +54,5 @@ let store = {
 }
 
 
-export default store;
+// export default store;
 window.store = store;
