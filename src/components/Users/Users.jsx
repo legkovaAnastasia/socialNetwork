@@ -1,14 +1,12 @@
+import axios from 'axios';
 import styles from './users.module.css'
 
 let Users = (props) => {
     if (props.users.length === 0) {
-        props.setUsers( [
-            { id: 1, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: true, fullName: 'Anna', status: 'going out tonight', location: { city: 'Irkutsk', country: 'Russia' } },
-            { id: 2, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: true, fullName: 'Elena', status: 'whats the news?', location: { city: 'Brest', country: 'Belarus' } },
-            { id: 3, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: false, fullName: 'Igor', status: 'avocado and gym', location: { city: 'Lviv', country: 'Ukraine' } },
-            { id: 4, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: false, fullName: 'Valery', status: 'looking for a company', location: { city: 'Nursultan', country: 'Kazakhstan' } }
-        ]
-        )
+        
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items);
+        });
     }
 
     return <div>
@@ -26,12 +24,12 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{users.fullName}</div>
+                        <div>{users.name}</div>
                         <div>{users.status}</div>
                     </span>
                     <span>
-                        <div>{users.location.country}</div>
-                        <div>{users.location.city}</div>
+                        <div>{"users.location.country"}</div>
+                        <div>{"users.location.city"}</div>
                     </span>
                 </span>
 
