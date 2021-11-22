@@ -1,5 +1,6 @@
 import axios from 'axios';
-import styles from './users.module.css'
+import styles from './users.module.css';
+import userPhoto from '../../assets/img/user.png'
 
 let Users = (props) => {
     if (props.users.length === 0) {
@@ -14,7 +15,7 @@ let Users = (props) => {
             props.users.map(users => <div key={users.id}>
                 <span>
                     <div>
-                        <img src={users.photoUrl} className={styles.usersPhoto} />
+                        <img src={users.photos.small !=null ? users.photos.small : userPhoto} className={styles.usersPhoto} />
                     </div>
                     <div>
                         {users.followed
