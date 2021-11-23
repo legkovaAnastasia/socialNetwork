@@ -3,12 +3,10 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
 let initialState = {
-    users: [
-        // { id: 1, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: true, fullName: 'Anna', status: 'going out tonight', location: {city: 'Irkutsk', country: 'Russia'} },
-        // { id: 2, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: true, fullName: 'Elena', status: 'whats the news?', location: {city: 'Brest', country: 'Belarus'} },
-        // { id: 3, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: false, fullName: 'Igor', status: 'avocado and gym', location: {city: 'Lviv', country: 'Ukraine'} },
-        // { id: 4, photoUrl: 'https://www.vokrug.tv/pic/person/f/2/0/7/f2073f62bfa96bbc291ebd37ef8c1659.jpg', followed: false, fullName: 'Valery', status: 'looking for a company', location: {city: 'Nursultan', country: 'Kazakhstan'} }
-    ]
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 21,
+    currentPage: 1
 }
 
 const usersReduser = (state = initialState, action) => {
