@@ -7,7 +7,7 @@ import usersReduser from "./usersReducer";
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialoguesPage: dialoguesReducer,
-    usersPage: usersReduser 
+    usersPage: usersReduser         
 });
 
 let store = createStore(reducers);
