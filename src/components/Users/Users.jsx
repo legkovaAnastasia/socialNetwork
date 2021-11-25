@@ -5,9 +5,17 @@ import React from 'react';
 
 class Users extends React.Component {
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                this.props.setUsers(response.data.items);
-            });
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount);
+        });
+    }
+    
+    onPageChanged = (pageNumber) => {   
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+        });
     }
 
     render() {
@@ -19,41 +27,42 @@ class Users extends React.Component {
             pages.push(i);
         }
 
-       return <div>
-           <div>
-               {
-                   pages.map( page => {
-                       return <span className={this.props.currentPage === page && styles.selectedPage}>{page}</span>
-                   })
-               }
-           </div>
-        {
-            this.props.users.map(users => <div key={users.id}>
-                <span>
-                    <div>
-                        <img src={users.photos.small !=null ? users.photos.small : userPhoto} className={styles.usersPhoto} />
-                    </div>
-                    <div>
-                        {users.followed
-                            ? <button onClick={() => { this.props.unfollow(users.id) }}>Unfollow</button>
-                            : <button onClick={() => { this.props.follow(users.id) }}>Follow</button>}
-                    </div>
-                </span>
-                <span>
+        return <div>
+            <div>
+                {
+                    pages.map(page => {
+                        return <span className={this.props.currentPage === page && styles.selectedPage}
+                            onClick={(event) => { this.onPageChanged(page); }}>{page}</span>
+                    })
+                }
+            </div>
+            {
+                this.props.users.map(users => <div key={users.id}>
                     <span>
-                        <div>{users.name}</div>
-                        <div>{users.status}</div>
+                        <div>
+                            <img src={users.photos.small != null ? users.photos.small : userPhoto} className={styles.usersPhoto} />
+                        </div>
+                        <div>
+                            {users.followed
+                                ? <button onClick={() => { this.props.unfollow(users.id) }}>Unfollow</button>
+                                : <button onClick={() => { this.props.follow(users.id) }}>Follow</button>}
+                        </div>
                     </span>
                     <span>
-                        <div>{"users.location.country"}</div>
-                        <div>{"users.location.city"}</div>
+                        <span>
+                            <div>{users.name}</div>
+                            <div>{users.status}</div>
+                        </span>
+                        <span>
+                            <div>{"users.location.country"}</div>
+                            <div>{"users.location.city"}</div>
+                        </span>
                     </span>
-                </span>
 
 
-            </div>)
-        }
-    </div>
+                </div>)
+            }
+        </div>
     }
 }
 
