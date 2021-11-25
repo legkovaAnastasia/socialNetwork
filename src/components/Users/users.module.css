@@ -5,4 +5,9 @@
 
 .selectedPage {
     font-weight: bold;
+    cursor: pointer;
 }
+/* 
+.number {
+    cursor: pointer;
+} */
