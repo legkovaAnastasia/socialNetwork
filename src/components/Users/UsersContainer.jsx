@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Users from './Users';
 import { connect } from "react-redux";
 import {setTotalUsersCountAC, setCurrentPageAC, followAC, setUsersAC, unfolliwAC } from "../../redux/usersReducer";
+import Users from './Users';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
