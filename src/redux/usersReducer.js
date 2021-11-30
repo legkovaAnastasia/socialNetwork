@@ -8,10 +8,10 @@ let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 1
 }
 
-const usersReduser = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -73,4 +73,4 @@ export const setTotalUsersCountAC = (totalUsersCount) => {
     }
 }
 
-export default usersReduser;
+export default usersReducer;
