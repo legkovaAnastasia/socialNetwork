@@ -21,7 +21,7 @@ const App = (props) => {
 
         <div className='app-wrapper-content'>
 
-          <Route path='/profile'> <ProfileContainer /></Route>
+          <Route path='/profile/:userId?'> <ProfileContainer /></Route>
           <Route path='/dialogues'> <DialoguesContainer /></Route>
           <Route path='/users'> <UsersContainer /> </Route>
 
