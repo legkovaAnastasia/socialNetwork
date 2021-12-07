@@ -8,3 +8,11 @@
   width: 70px;
   margin-top: 9px;
 }
+
+.loginBlock{
+  float: right;
+}
+
+.loginBlock a {
+  color:antiquewhite;
+}
