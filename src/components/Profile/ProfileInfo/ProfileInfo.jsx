@@ -1,6 +1,6 @@
-
 import Preloader from '../../common/preloader/preloader';
 import s from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -8,13 +8,13 @@ const ProfileInfo = (props) => {
   }
     return(
       <div>
-        <div>
+        {/* <div>
         <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRisv-yQgXGrto6OxQxX62JyvyQGvRsQQ760g&usqp=CAU'/>
-        </div>
+        </div> */}
         <div className={s.descriptionBlock}>
           <img src={props.profile.photos.large} />
           <div>{props.profile.aboutMe}</div>
-          avatar+description
+          <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         </div>
       </div>  
     );
