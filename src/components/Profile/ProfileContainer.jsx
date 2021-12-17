@@ -1,10 +1,8 @@
-import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import {getUserProfile} from '../../redux/profileReducer'
 import { Redirect, withRouter } from 'react-router';
-import { withAuhtRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { getStatus, updateStatus } from '../../redux/profileReducer';
 
@@ -13,7 +11,7 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId; //из параметров, которые приходят в запросе + в app.js прописали возможные параметры в роуте
     if (!userId) {
-      userId = 20879 
+      userId =  this.props.authorizedUserId 
     }
     this.props.getUserProfile(userId);
     this.props.getStatus(userId);
@@ -26,7 +24,9 @@ class ProfileContainer extends React.Component {
 }
 let mapStateToProps = (state) => ({ 
   profile: state.profilePage.profile,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth
 });
 
 export default compose (connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
