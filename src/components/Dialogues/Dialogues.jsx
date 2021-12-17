@@ -2,7 +2,8 @@ import s from './Dialogues.module.css';
 import DialogueItem from './DialoguesItem/DialogsItem';
 import Message from './Message/Message';
 import React from 'react';
-import { sendMessageBodyCreator, updateNewMessageBodyCreator } from '../../redux/dialoguesReducer';
+import { Redirect } from 'react-router';
+import AddMessageForm from './AddMessagesForm/AddMessageForm';
 
 const Dialogues = (props) => {
 
@@ -12,14 +13,13 @@ const Dialogues = (props) => {
     let messagesElements = state.messages.map(messages => < Message message={messages.message} key={messages.id} />);
     let newMessageBody = state.newMessageBody;
 
-    let onSendMessageClick = () => {
-        props.sendMessage();
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageBody);
     }
 
-    let onNewMessageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
-    }
+    if (!props.isAuth) return <Redirect to={'/login'} />
+
+
 
     return (
         <div className={s.dialogues}>
@@ -28,13 +28,8 @@ const Dialogues = (props) => {
             </div>
             <div className={s.messages}>
                 <div>{messagesElements}</div>
-                <div>
-                    <div><textarea value={newMessageBody}
-                        onChange={onNewMessageChange}
-                        placeholder='Enter your message'></textarea></div>
-                    <div><button onClick={onSendMessageClick}>Add Post</button> </div>
-                </div>
             </div>
+            <AddMessageForm onSubmit={addNewMessage} />
         </div>
     );
 }
