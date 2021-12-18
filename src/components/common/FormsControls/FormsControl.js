@@ -9,7 +9,7 @@ const FormControl = ({input, meta, child, ...props}) => { //props теперь �
             <div>
             {props.children}
             </div>
-            {meta.error && meta.touched && <span>{meta.error}</span>}
+            {hasError && <span>{meta.error}</span>}
         </div>
     )
 }

@@ -10,11 +10,24 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/login';
+import React from 'react';
+import { connect } from 'react-redux';
+import { initializeApp } from '../src/redux/appReducer';
+import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
+import Preloader from './components/common/preloader/preloader';
 
 
+class App extends React.Component {
+  componentDidMount() {
+    this.props.initializeApp();
+   }
 
-const App = (props) => {
-  return (
+  render() {
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
+    return (
       <div className='app-wrapper'>
         <HeaderContainer />
 
@@ -29,9 +42,13 @@ const App = (props) => {
 
         </div>
       </div>
-  );
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
 
+export default compose (withRouter, connect (mapStateToProps, {initializeApp})) (App);
 // проверить если будут ошибки по уроку 27 Router и BrowserRoute в обрамляющем теге
