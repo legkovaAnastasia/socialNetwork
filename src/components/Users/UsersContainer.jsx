@@ -4,7 +4,6 @@ import { setCurrentPage, follow, unfollow, toggleFollowingProgress, getUsers } f
 import Users from './Users';
 import Preloader from './../common/preloader/preloader';
 import { compose } from 'redux';
-import { withAuhtRedirect } from '../../hoc/withAuthRedirect';
 
 class UsersContainer extends React.Component {
 
@@ -18,22 +17,22 @@ class UsersContainer extends React.Component {
 
     render() {
         return <>
-        { this.props.isFetching ? <Preloader/> : null }
-         <Users currentPage={this.props.currentPage}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            followingInProgress={this.props.followingInProgress}
-        />
+            {this.props.isFetching ? <Preloader /> : null}
+            <Users currentPage={this.props.currentPage}
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                followingInProgress={this.props.followingInProgress}
+            />
         </>
     }
 }
 
 let mapStateToProps = (state) => {
-    return{
+    return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
@@ -43,12 +42,9 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose (withAuhtRedirect,
-    connect(mapStateToProps, 
-        { follow, unfollow, setCurrentPage,   
-        toggleFollowingProgress, getUsers})
-) (UsersContainer)
-
-connect(mapStateToProps, 
-    { follow, unfollow, setCurrentPage,   
-    toggleFollowingProgress, getUsers}) (UsersContainer);
+export default compose
+    (connect(mapStateToProps,
+        {follow, unfollow, setCurrentPage,
+            toggleFollowingProgress, getUsers
+        })
+    )(UsersContainer)

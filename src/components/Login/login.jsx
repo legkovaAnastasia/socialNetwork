@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { required } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControl';
-import {login} from '../../redux/authReducer'
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import styles from '../common/FormsControls/FormsControl.module.css';
+import { login } from '../../redux/authReducer'
+import { Redirect } from 'react-router';
+import styles from './../common/FormsControls/FormsControl.module.css';
 
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Email'} name={'email'} component={Input} validate={[required]}/>
+                <Field placeholder={'Email'} name={'email'} component={Input} validate={[required]} />
             </div>
             <div>
                 <Field placeholder={'Password'} name={'password'} component={Input} validate={[required]} type={'password'} />
@@ -22,7 +22,8 @@ const LoginForm = (props) => {
             </div>
             {props.error && <div className={styles.formSummaryError}>
                 {props.error}
-            </div>}
+            </div>
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -30,7 +31,7 @@ const LoginForm = (props) => {
     )
 }
 
-const LoginReduxForm = reduxForm({ form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 const Login = (props) => {
     const onSubmit = (formData) => {
@@ -50,4 +51,4 @@ const mapStateToprops = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToprops, {login}) (Login);
+export default connect(mapStateToprops, { login })(Login);
