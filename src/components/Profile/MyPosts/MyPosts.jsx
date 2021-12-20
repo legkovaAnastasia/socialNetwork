@@ -1,12 +1,14 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { maxLengthCreator, required } from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormsControls/FormsControl';
+import { Component } from 'react';
 
 const MyPosts = (props) => {
 
+    console.log('RENDER');
   let postsElements = props.posts.map(posts => <Post message={posts.message} likeCounter={posts.likeCounter} />);
 
   let newPostElement = React.createRef();
@@ -25,6 +27,7 @@ const MyPosts = (props) => {
     </div>
   );
 }
+
 
 const maxLength10 = maxLengthCreator(10);
 
