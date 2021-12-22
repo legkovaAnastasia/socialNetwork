@@ -16,6 +16,10 @@ import { initializeApp } from '../src/redux/appReducer';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Preloader from './components/common/preloader/preloader';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from "react-router-dom";
+import store from './redux/redux-store';
+
 
 
 class App extends React.Component {
@@ -28,6 +32,8 @@ class App extends React.Component {
       return <Preloader />
     }
     return (
+      <Router>
+      <Provider store={store} >
       <div className='app-wrapper'>
         <HeaderContainer />
 
@@ -42,6 +48,8 @@ class App extends React.Component {
 
         </div>
       </div>
+            </Provider>
+            </Router>
     );
   }
 }

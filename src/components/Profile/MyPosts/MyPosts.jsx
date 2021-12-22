@@ -4,11 +4,25 @@ import React, { PureComponent } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { maxLengthCreator, required } from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormsControls/FormsControl';
-import { Component } from 'react';
+
+const maxLength10 = maxLengthCreator(10);
+
+let AddNewPostForm = (props) => {
+  return     <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field name='newPostText' component={Textarea} validate={[required, maxLength10]}/>
+      </div>
+      <div>
+        <button>Add Post</button>
+      </div>
+      {/* <button>Remove</button> */}
+    </form>
+}
+
+let AddNewPostFormRedux = reduxForm ({form: 'ProfileAddNewPostForm'}) (AddNewPostForm)
 
 const MyPosts = (props) => {
 
-    console.log('RENDER');
   let postsElements = props.posts.map(posts => <Post message={posts.message} likeCounter={posts.likeCounter} />);
 
   let newPostElement = React.createRef();
@@ -27,22 +41,5 @@ const MyPosts = (props) => {
     </div>
   );
 }
-
-
-const maxLength10 = maxLengthCreator(10);
-
-let AddNewPostForm = (props) => {
-  return     <form onSubmit={props.handleSubmit}>
-      <div>
-        <Field name='newPostText' component={Textarea} validate={[required, maxLength10]}/>
-      </div>
-      <div>
-        <button>Add Post</button>
-      </div>
-      {/* <button>Remove</button> */}
-    </form>
-}
-
-let AddNewPostFormRedux = reduxForm ({form: 'ProfileAddNewPostForm'}) (AddNewPostForm)
 
 export default MyPosts;
