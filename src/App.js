@@ -32,8 +32,6 @@ class App extends React.Component {
       return <Preloader />
     }
     return (
-      <Router>
-      <Provider store={store} >
       <div className='app-wrapper'>
         <HeaderContainer />
 
@@ -41,15 +39,13 @@ class App extends React.Component {
 
         <div className='app-wrapper-content'>
 
-          <Route path='/profile/:userId?'> <ProfileContainer /></Route>
+          <Route path='/profile/:userId?'> <ProfileContainer /></Route> 
           <Route path='/dialogues'> <DialoguesContainer /></Route>
           <Route path='/users'> <UsersContainer /> </Route>
           <Route path='/login'> <LoginPage /> </Route>
 
         </div>
       </div>
-            </Provider>
-            </Router>
     );
   }
 }
