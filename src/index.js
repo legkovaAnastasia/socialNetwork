@@ -1,22 +1,14 @@
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import store from './redux/redux-store';
 import './index.css';
-import App from './App';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from "react-router-dom";
+import SocialJSApp from './App';
 
-  ReactDOM.render(
-    <Router>
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
-    </Router>,
-    document.getElementById('root')
-  );
+
+ReactDOM.render(
+  <SocialJSApp />,
+  document.getElementById('root')
+);
 
 
 // If you want to start measuring performance in your app, pass a function

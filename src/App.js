@@ -54,5 +54,16 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default compose (withRouter, connect (mapStateToProps, {initializeApp})) (App);
-// проверить если будут ошибки по уроку 27 Router и BrowserRoute в обрамляющем теге
+let AppContainer = compose (withRouter, connect (mapStateToProps, {initializeApp})) (App);
+
+const SocialJSApp = (props) => {
+  return     <Router>
+  <React.StrictMode>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </React.StrictMode>
+  </Router>
+}
+
+export default SocialJSApp;
