@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css'
 import Navbar from './components/Navbar/Navbar';
-import { Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -38,12 +38,15 @@ class App extends React.Component {
         <Navbar />
 
         <div className='app-wrapper-content'>
-
+        <Switch >
+        <Redirect exact from="/" to="/profile" />
         <Suspense fallback={<div>Loading...</div>}><Route path='/profile/:userId?'> <ProfileContainer /> </Route> 
           <Route path='/dialogues'><DialoguesContainer /> </Route></Suspense>
           <Route path='/users'> <UsersContainer /> </Route>
+          <Route path='/login/facebook'><div>Facebook</div> </Route>
           <Route path='/login'> <LoginPage /> </Route>
-
+          <Route path='*'><div>404 NOT FOUND</div> </Route>
+          </Switch>
         </div>
       </div>
     );
