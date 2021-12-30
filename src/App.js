@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css'
 import Navbar from './components/Navbar/Navbar';
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -23,14 +22,21 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 
 
 class App extends React.Component {
+  catchAllUnhandledErrors = () => {
+    alert('some error');
+  }
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+   }
+   componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
    }
 
   render() {
-    // if (!this.props.initialized) {
-    //   return <Preloader />
-    // }
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
     return (
       <div className='app-wrapper'>
         <HeaderContainer />
